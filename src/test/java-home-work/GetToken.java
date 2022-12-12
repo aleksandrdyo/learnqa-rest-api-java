@@ -18,6 +18,8 @@ public class GetToken extends Thread{
                 .jsonPath();
         //response.prettyPrint();
         String get_token  = response.get("token");
+        int get_time  = response.get("seconds");
+
 
         //2) делал один запрос с token ДО того, как задача готова, убеждался в правильности поля status
         Map<String, String> token = new HashMap<>();
@@ -32,7 +34,7 @@ public class GetToken extends Thread{
         System.out.println("Status before - " + status_before);
 
         //3) ждал нужное количество секунд с помощью функции .sleep()
-        Thread.sleep(20000);
+        Thread.sleep(get_time*1000);
 
         //4) делал бы один запрос c token ПОСЛЕ того, как задача готова,
         // убеждался в правильности поля status и наличии поля result
