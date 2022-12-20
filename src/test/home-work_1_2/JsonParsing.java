@@ -17,6 +17,7 @@ public class JsonParsing {
         //response.prettyPrint();
 
         List jsonpars  = response.get("messages.message");
+        System.out.println(jsonpars);
         System.out.println(jsonpars.get(1));
 
         //String message = response.getString("messages[1]");
