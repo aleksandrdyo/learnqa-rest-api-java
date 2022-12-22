@@ -8,7 +8,7 @@ public class ShortPhrases {
     @Test
     public void testShortPhrases(){
         int count = 15;
-        String shortphrase = "1234567890123456";
+        String shortphrase = "12345678901234";
         //Scanner inputphrase = new Scanner(System.in);
         //String shortphrase = inputphrase.nextLine();
         //System.out.println(shortphrase);
