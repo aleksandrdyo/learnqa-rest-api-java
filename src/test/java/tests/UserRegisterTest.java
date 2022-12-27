@@ -5,8 +5,10 @@ import io.restassured.response.Response;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
+import lib.ApiCoreRequests;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import javax.xml.crypto.Data;
@@ -142,15 +144,17 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
     }
 
+
     //- Создание пользователя без указания одного из полей - с помощью @ParameterizedTest
     // необходимо проверить, что отсутствие любого параметра не дает зарегистрировать пользователя
     @ParameterizedTest
-    @ValueSource(strings = {"email", "password", "username", "firstName", "lastName"})
-    public void testCreateUserUnsuccessfullyWithoutOneField() {
-        String email = DataGenerator.getRandomEmail();
+    @ValueSource(strings = {"username", "lastName", "firstName"})
+    //@MethodSource("fieldName")
+    public void testCreateUserUnsuccessfullyWithoutOneField(String params, String name) {
 
-        //Map<String, String> userDate = new HashMap<>();
-        Map<String, String> userDate = DataGenerator.getRegistrationDataWithoutOneField();
+        Map<String, String> userDate = new HashMap<>();
+        userDate.put(params, name);
+        userDate = DataGenerator.getRegistrationDataWithoutOneField(userDate);
 
         String link = "https://playground.learnqa.ru/api/user/";
 
@@ -160,9 +164,9 @@ public class UserRegisterTest extends BaseTestCase {
                 .post(link)
                 .andReturn();
 
-        //responseCreateAuth.prettyPrint();
-        System.out.println(responseCreateAuth.asString());
-        System.out.println(responseCreateAuth.statusCode());
+        responseCreateAuth.prettyPrint();
+        //System.out.println(responseCreateAuth.asString());
+        //System.out.println(responseCreateAuth.statusCode());
 
 
         //Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
