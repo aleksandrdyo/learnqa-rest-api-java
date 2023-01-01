@@ -1,19 +1,32 @@
 package tests;
 
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.BaseTestCase;
 import lib.Assertions;
 import lib.DataGenerator;
-import org.junit.Assert;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Epic("User edit cases(Epic)")
+@Feature("Edit(Feature)")
 public class UserEditTest extends BaseTestCase {
+
     @Test
+    @Link("https://mail.ru")
+    @Issue("123")
+    @TmsLink("test-1")
+    @Severity(SeverityLevel.CRITICAL)
+    @Attachment(value = "Page screenshot", type = "image/png")
+    @Description("Positive test of successfully edit user(Description)")
+    @DisplayName("Test positive edit user(DisplayName)")
     public void testEditJustCreatedTest() {
         //Generate User
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -39,8 +52,6 @@ public class UserEditTest extends BaseTestCase {
                 .post("https://playground.learnqa.ru/api/user/login")
                 .andReturn();
 
-        //responseGetAuth.prettyPrint();
-
         //Edit
         String newName = "Changed Name";
         Map<String, String> editData = new HashMap<>();
@@ -62,13 +73,18 @@ public class UserEditTest extends BaseTestCase {
                 .get("https://playground.learnqa.ru/api/user/" + userId)
                 .andReturn();
 
-        //responseUserData.prettyPrint();
-        //System.out.println(responseGetData.asString());
         Assertions.assertJsonByName(responseUserData, "firstName", newName);
     }
 
     //Ex17: Негативные тесты на PUT
     @Test
+    @Link("https://mail.ru")
+    @Issue("123")
+    @TmsLink("test-1")
+    @Severity(SeverityLevel.MINOR)
+    @Attachment(value = "Page screenshot", type = "image/png")
+    @Description("Negative tests of edit user data")
+    @DisplayName("Tests negative edit user data")
     public void testEditNegative() {
         //Generate User
         Map<String, String> userData1 = DataGenerator.getRegistrationData();

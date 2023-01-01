@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import io.restassured.http.ContentType;
@@ -36,3 +37,4 @@ public class GetAndPostExamples {
 
     }
 }
+*/

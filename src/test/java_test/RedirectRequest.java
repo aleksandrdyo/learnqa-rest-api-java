@@ -1,3 +1,4 @@
+/*
 import io.restassured.http.ContentType;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -18,3 +19,4 @@ public class RedirectRequest {
                 //.header("Location", notNullValue());
     }
 }
+*/

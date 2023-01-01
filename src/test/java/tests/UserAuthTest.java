@@ -58,8 +58,10 @@ public class UserAuthTest extends BaseTestCase {
     }
 
     @Test
+    //@Titl("Позитивный тест, создание нового пользователя title")
     @Description("This test successfully authorize user by email and password")//Описание что именно тест проверяет
     @DisplayName("Test positive auth user")//название теста в отчете
+
     public void testAuthUser(){
 /*
         Map<String, String> cookies = responseGetAuth.getCookies();
